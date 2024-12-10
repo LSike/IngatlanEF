@@ -1,4 +1,7 @@
 ﻿using IngatlanEF.IngatlanokWindows;
+using IngatlanEF.Models;
+using Microsoft.Win32;
+using System.IO;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -35,6 +38,7 @@ namespace IngatlanEF
                 menuBelepes.Header = "Belépés";
                 menuIngatlanok.IsEnabled = false;
                 menuUgyintezok.IsEnabled = false;
+                menuExport.IsEnabled = false;
             }
             else
             {
@@ -47,6 +51,7 @@ namespace IngatlanEF
                     //aktiválom a másik két menüpontot
                     menuIngatlanok.IsEnabled = true;
                     menuUgyintezok.IsEnabled = true;
+                    menuExport.IsEnabled = true;
                     //kiíratom a felhasználónevet
                     lblBejelentkezve.Content = $"Bejelentkezve: {logName}";
                     menuBelepes.Header = "Kilépés";
@@ -70,6 +75,60 @@ namespace IngatlanEF
         {
             IngatlanokModositasaWindow ingModWin = new IngatlanokModositasaWindow();
             ingModWin.ShowDialog();
+        }
+
+        private void Export(object sender, RoutedEventArgs e)
+        {
+            SaveFileDialog sfd = new SaveFileDialog() { 
+                FileName = "export.txt",
+                DefaultExt = "*.txt",
+                Filter = "txt|*.txt"
+            };
+            if (sfd.ShowDialog() == true)
+            {
+                if (File.Exists(sfd.FileName))
+                {
+                    MessageBoxResult result = MessageBox.Show("A fájl már létezik, felülírja?","Figyelmeztetés",MessageBoxButton.YesNo,MessageBoxImage.Warning);
+                    if (result == MessageBoxResult.Yes)
+                    {
+                        SaveIngatlansAs(sfd);
+
+                    }
+                }
+                else
+                {
+                    SaveIngatlansAs(sfd);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Nincs kiválasztott állomány!");
+            }
+        }
+
+        private static void SaveIngatlansAs(SaveFileDialog sfd)
+        {
+            using (var context = new MiskolcingatlanContext())
+            {
+                try
+                {
+                    List<Ingatlan> ingatlanok = context.Ingatlans.ToList();
+                    using (StreamWriter sw = new StreamWriter(sfd.FileName))
+                    {
+                        foreach (Ingatlan ingatlan in ingatlanok)
+                        {
+                            sw.WriteLine($"{ingatlan.Település}, {ingatlan.Cim}\n" +
+                                $"{ingatlan.Ár}");
+                        }
+                        sw.Close();
+                    }
+                }
+                catch (Exception)
+                {
+
+                    throw;
+                }
+            }
         }
     }
 }
