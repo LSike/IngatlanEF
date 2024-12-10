@@ -21,10 +21,15 @@ namespace IngatlanEF.IngatlanokWindows
     /// </summary>
     public partial class IngatlanokFelviteleWindow : Window
     {
+        List<Ugyintezo> ugyintezok = UgyintezoService.GetAllUgyintezo();
         public IngatlanokFelviteleWindow()
         {
             InitializeComponent();
             cbxTipus.ItemsSource = MainWindow.tipusok;
+            foreach (Ugyintezo ugyintezo in ugyintezok)
+            {
+                cbxUgyintezo.Items.Add($"{ugyintezo.Id}: {ugyintezo.Nev}");
+            }
         }
 
         private void btnMentes_Click(object sender, RoutedEventArgs e)
@@ -37,7 +42,7 @@ namespace IngatlanEF.IngatlanokWindows
                 Ár = int.Parse(tbxAr.Text),
                 Tipus = cbxTipus.Text,
                 KepNev = tbxKepnev.Text,
-                UgyintezoId = int.Parse(cbxUgyintezo.Text)
+                UgyintezoId = int.Parse(cbxUgyintezo.Text.Split(":")[0])
             };
             IngatlanService.IngatlanInsert(ujIngatlan);
             MessageBox.Show("Sikeres rögzítés.");
