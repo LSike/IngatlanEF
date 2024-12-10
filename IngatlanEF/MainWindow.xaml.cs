@@ -20,6 +20,7 @@ namespace IngatlanEF
         public const string JELSZO = "Asgragh";
         public static bool isLogged = false;
         public static string logName = "";
+        public static string[] tipusok = {"családi ház","lakás","építési telek","raktárépület","nyaraló","ba"};
         public MainWindow()
         {
             InitializeComponent();
@@ -61,7 +62,8 @@ namespace IngatlanEF
 
         private void IngatlanokFelvitele(object sender, RoutedEventArgs e)
         {
-
+            IngatlanokFelviteleWindow ingFelWin = new IngatlanokFelviteleWindow();
+            ingFelWin.ShowDialog();
         }
     }
 }

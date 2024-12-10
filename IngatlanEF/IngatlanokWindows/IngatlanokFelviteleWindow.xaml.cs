@@ -24,6 +24,7 @@ namespace IngatlanEF.IngatlanokWindows
         public IngatlanokFelviteleWindow()
         {
             InitializeComponent();
+            cbxTipus.ItemsSource = MainWindow.tipusok;
         }
 
         private void btnMentes_Click(object sender, RoutedEventArgs e)
