@@ -1,0 +1,31 @@
+﻿<Window x:Class="IngatlanEF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:IngatlanEF"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="200" Width="300">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Menu VerticalAlignment="Center">
+            <MenuItem Name="menuBelepes" Header="Belépés" Click="LogInOut"/>
+            <MenuItem Name="menuIngatlanok" Header="Ingatlanok" IsEnabled="False">
+                <MenuItem Header="Ingatlanok listája" Click="IngatlanokListaja"/>
+                <MenuItem Header="Ingatlanok felvitele" Click="IngatlanokFelvitele"/>
+                <MenuItem Header="Ingatlanok módosítása"/>
+                <MenuItem Header="Ingatlanok törlése"/>
+            </MenuItem>
+            <MenuItem Name="menuUgyintezok" Header="Ügyintézők" IsEnabled="False">
+                <MenuItem Header="Ügyintézők listája"/>
+                <MenuItem Header="Ügyintézők felvitele"/>
+                <MenuItem Header="Ügyintézők módosítása"/>
+                <MenuItem Header="Ügyintézők törlése"/>
+            </MenuItem>
+        </Menu>
+        <Label Name="lblBejelentkezve" Content="Bejelentkezve: " HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1"/>
+    </Grid>
+</Window>

@@ -1,0 +1,29 @@
+﻿<Window x:Class="IngatlanEF.IngatlanokWindows.IngatlanokFelviteleWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:IngatlanEF.IngatlanokWindows"
+        mc:Ignorable="d"
+        Title="IngatlanokFelviteleWindow" Height="400" Width="500">
+    <Grid>
+        <StackPanel>
+            <Label Content="Település"/>
+            <TextBox x:Name="tbxTelepules"/>
+            <Label Content="Cím"/>
+            <TextBox x:Name="tbxCim"/>
+            <Label Content="Ár"/>
+            <TextBox x:Name="tbxAr"/>
+            <Label Content="Típus"/>
+            <ComboBox x:Name="cbxTipus"/>
+            <Label Content="Kép név"/>
+            <TextBox x:Name="tbxKepnev"/>
+            <Label Content="Ügyintéző"/>
+            <ComboBox x:Name="cbxUgyintezo"/>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button x:Name="btnMentes" Content="Mentés" Click="btnMentes_Click" Margin="10" Padding="10"/>
+                <Button x:Name="btnMegsem" Content="Mégsem" Click="btnMegsem_Click" Margin="10" Padding="10"/>
+            </StackPanel>
+        </StackPanel> 
+    </Grid>
+</Window>
