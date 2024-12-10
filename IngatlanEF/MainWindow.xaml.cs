@@ -65,5 +65,11 @@ namespace IngatlanEF
             IngatlanokFelviteleWindow ingFelWin = new IngatlanokFelviteleWindow();
             ingFelWin.ShowDialog();
         }
+
+        private void IngatlanokModositasa(object sender, RoutedEventArgs e)
+        {
+            IngatlanokModositasaWindow ingModWin = new IngatlanokModositasaWindow();
+            ingModWin.ShowDialog();
+        }
     }
 }
